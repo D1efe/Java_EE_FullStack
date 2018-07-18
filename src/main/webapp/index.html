@@ -1,26 +1,28 @@
+
 <!DOCTYPE html>
 <html lang="en" ng-app>
 <head>
-    <meta charset="UTF-8">
-    <title>Banking Application</title>
+<meta charset="UTF-8">
+<title>Banking Application</title>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand">Banking Application</a>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Example 1: ng-hide, ng-model
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">Banking Application</a>
+			</div>
+		</div>
+	</nav>
+
+
+	<!-- 	 Example 1: ng-hide, ng-model
     <div ng-hide="isHidden">
     Name: <input type="text" ng-model="name"/>{{name}}
     </div>
     Hide div: <input type="checkbox" ng-model="isHidden"/>
-     -->
-     
-    <!-- Example 2: ng-init, ng-click
+ -->
+
+	<!-- Example 2: ng-init, ng-click
     <div ng-init ="name='john'">
     	<div ng-hide="isHidden">
     	Name: <input type="text" ng-model="name"/>{{name}}
@@ -28,34 +30,75 @@
     	<button ng-click="name='Jane'">Change name</button>
     </div>
      -->
-     
-    <!--
-    Example 3: ng-repeat and filters
-    <div ng-init ="accounts=[{'firstName': 'John', 'secondName': 'Doe','accountNumber': '1234'},{'firstName': 'Jane','secondName': 'Doe','accountNumber': '1235'}]">
-    	<h3><span>Simple example</span></h3>
-    	<ul>
-    		<li ng-repeat="account in accounts">{{account}}</li>
-    	</ul>
-    	<h3><span>Table example</span></h3>
-    	<table>
-    		<tr>
-    			<th>first</th>
-    			<th>second</th>
-    			<th>number</th>
-    		</tr>
-    		<tr ng-repeat="account in accounts">
-    			<td>{{account.firstName |  uppercase}}</td>
-    			<td>{{account.secondName | uppercase}}</td>
-    			<td>{{account.accountNumber}}</td>
-    		</tr>
-    	</table>
-    </div>
-    -->
-	<link rel="stylesheet" href="scripts/bootstrap.min.css"> 
-    <script src="scripts/jquery-2.1.4.min.js"></script>
-    <script src="scripts/angular.min.js"></script>
-    <script src="scripts/ui-router.min.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
-    </div>
+
+	Example 3: ng-repeat and filters
+	<div ng-hide="hideTable">
+		<div
+			ng-init="accounts=[{'firstName': 'John', 'secondName': 'Doe','accountNumber': '1234'},{'firstName': 'Jane','secondName': 'Doe','accountNumber': '1235'}]">
+			<h3>
+				<span>Simple example</span>
+			</h3>
+			<ul>
+				<li ng-repeat="account in accounts">{{account}}</li>
+			</ul>
+			search bar: <input type="text" ng-model="s">
+			<h3>
+				<span>Table example</span>
+			</h3>
+			<table class="table">
+				<tr>
+					<th>first</th>
+					<th>second</th>
+					<th>number</th>
+				</tr>
+				<tr ng-repeat="account in accounts | filter : s">
+					<td>{{account.firstName | uppercase}}</td>
+					<td>{{account.secondName | uppercase}}</td>
+					<td>{{account.accountNumber}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	Hide div:
+	<input type="checkbox" ng-model="hideTable" />
+
+
+
+	<style>
+body
+{
+	background-color: aqua;
+}
+
+table, th, td
+{
+	border: 1px solid grey;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+table th
+{
+	background-color: background;
+}
+
+table tr:nth-child(odd)
+{
+	background-color: lime;
+}
+
+table tr:nth-child(even)
+{
+	background-color: gray;
+}
+</style>
+
+	<link rel="stylesheet" href="scripts/bootstrap.min.css">
+	<script src="scripts/jquery-2.1.4.min.js"></script>
+	<script src="scripts/angular.min.js"></script>
+	<script src="scripts/ui-router.min.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+	</div>
+
 </body>
 </html>
